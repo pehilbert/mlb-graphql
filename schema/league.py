@@ -2,6 +2,11 @@ import strawberry
 from typing import Optional
 
 @strawberry.type
+class LeagueSport:
+	id: Optional[int] = None
+	link: Optional[str] = None
+
+@strawberry.type
 class LeagueSeasonDateInfo:
 	season_id: Optional[str] = None
 	pre_season_start_date: Optional[str] = None
@@ -28,6 +33,7 @@ class LeagueSeasonDateInfo:
 class League:
 	id: Optional[int] = None
 	name: Optional[str] = None
+	link: Optional[str] = None
 	abbreviation: Optional[str] = None
 	name_short: Optional[str] = None
 	season_state: Optional[str] = None
@@ -42,4 +48,5 @@ class League:
 	org_code: Optional[str] = None
 	conferences_in_use: Optional[bool] = None
 	divisions_in_use: Optional[bool] = None
+	sport: Optional[LeagueSport] = None
 	active: Optional[bool] = None

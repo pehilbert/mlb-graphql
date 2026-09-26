@@ -1,0 +1,16 @@
+{
+    "from_responses": [
+        {
+            "name": "Sport",
+            "input_file": "codegen/responses/sport.json",
+            "output_file": "schema/sport.py",
+            "exclude_fields": ["sortOrder"]
+        },
+        {
+            "name": "League",
+            "input_file": "codegen/responses/league.json",
+            "output_file": "schema/league.py",
+            "exclude_fields": ["sortOrder"]
+        }
+    ]
+}

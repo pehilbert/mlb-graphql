@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "code": "mlb",
+    "link": "/api/v1/sports/1",
+    "name": "Major League Baseball",
+    "abbreviation": "MLB",
+    "sortOrder": 11,
+    "activeStatus": true
+}
