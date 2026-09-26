@@ -3,8 +3,11 @@ import json
 from automapper import mapper
 from config.api_config import BASE_URL
 from schema.exceptions import NotFoundException, UnexpectedResponseException
+from schema.league import League, LeagueSeasonDateInfo
 from schema.sport import Sport
 from utils.casing import keys_to_snake_case
+
+mapper.add(dict, LeagueSeasonDateInfo)
 
 def get_sport(sport_id: int) -> Sport:
     response = requests.get(f'{BASE_URL}/sports/{sport_id}')
@@ -22,4 +25,22 @@ def get_sport(sport_id: int) -> Sport:
     if len(results) == 0:
         raise NotFoundException
 
-    return results[0]    
+    return results[0]
+
+def get_league(league_id: int) -> League:
+    response = requests.get(f'{BASE_URL}/leagues', { 'leagueIds': str(league_id) })
+    results: list[League] = []
+
+    try:
+        leagues = json.loads(response.content)['leagues']
+
+        for league in leagues:
+            results.append(mapper.to(League).map(keys_to_snake_case(league)))
+
+    except KeyError as e:
+        raise UnexpectedResponseException(repr(e))
+
+    if len(results) == 0:
+        raise NotFoundException
+
+    return results[0]
