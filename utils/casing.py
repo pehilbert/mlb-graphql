@@ -1,7 +1,7 @@
 import re
 from typing import Any
 
-_CAMEL_CASE_PATTERN = re.compile(r'(?<!^)(?=[A-Z])')
+_CAMEL_CASE_PATTERN = re.compile(r'(?<!^)(?=[A-Z])|(?<=[a-zA-Z])(?=[0-9])')
 
 
 def camel_to_snake(value: str) -> str:
